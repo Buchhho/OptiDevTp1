@@ -1,9 +1,12 @@
 services:
   app:
+    build: .
     ports:
-      - "8086:80"
+      - 8086:80
     depends_on:
       - db
+    volumes:
+      - ./:/var/www/html
   db:
     image: mysql:5.7
     environment:
