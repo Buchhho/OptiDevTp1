@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - 8086:80
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=pswrd
+      - MYSQL_DATABASE=OptiDevTp1
+      - MYSQL_ROOT_PASSWORD=pswrd
+    volumes:
+      - db-data:/var/lib/mysql:rw
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+
+volumes:
+  db-data:
