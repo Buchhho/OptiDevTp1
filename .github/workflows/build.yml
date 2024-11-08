@@ -1,6 +1,7 @@
+---
 name: Main CI workflow
 on:
-  push:
+  push: null
 jobs:
   build:
     runs-on: ubuntu-latest
